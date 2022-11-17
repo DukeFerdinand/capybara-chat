@@ -1,0 +1,12 @@
+appId: com.redbirddigitalsolutions.capybara
+productName: Capybara Chat
+copyright: Copyright © 2022 Redbird Digital Solutions, LLC
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

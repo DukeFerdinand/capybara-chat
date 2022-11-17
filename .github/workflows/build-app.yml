@@ -1,0 +1,48 @@
+# Build the app using yarn on a macOS runner
+name: Build App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    macos:
+        runs-on: macos-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Use Node.js 18.x
+          uses: actions/setup-node@v1
+          with:
+            node-version: 18.x
+        - name: Install dependencies
+          run: yarn install
+        - name: Build using yarn
+          run: yarn build
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: app
+            # Upload just the dmg file(s)
+            path: dist/*.dmg
+
+#    linux:
+#        runs-on: ubuntu-latest
+#        steps:
+#        - uses: actions/checkout@v2
+#        - name: Use Node.js 18.x
+#          uses: actions/setup-node@v1
+#          with:
+#            node-version: 18.x
+#        - name: Install dependencies
+#          run: yarn install
+#        - name: Build using yarn
+#          run: yarn build
+#        - name: Upload artifacts
+#          uses: actions/upload-artifact@v2
+#          with:
+#            name: app
+#            path: dist
